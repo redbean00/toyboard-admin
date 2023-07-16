@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fastcampus.toyboard.repository.AdminBoardRepository">
+    <select id="findAll" resultType="com.fastcampus.toyboard.dto.AdminBoardDto">
+        select user_id, title, created_at from board_tb
+    </select>
+
+    <select id="findById" resultType="com.fastcampus.toyboard.dto.AdminBoardDto">
+        select user_id, title, created_at, hide from board_tb where id = {#id}
+    </select>
+
+    <delete id="deleteById">
+        delete from board_tb where id = {#id}
+    </delete>
+
+    <update id="updateById">
+        update board_tb set hide = {#hide} where id = {#id}
+    </update>
+
+</mapper>
