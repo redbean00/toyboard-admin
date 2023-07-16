@@ -5,6 +5,7 @@ import com.fastcampus.toyboard.entity.EmailMessage;
 import com.fastcampus.toyboard.service.AdminBoardService;
 import com.fastcampus.toyboard.service.AdminUserService;
 import com.fastcampus.toyboard.service.EmailService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,17 +14,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @Controller
 public class AdminController {
-
-    @Autowired
-    AdminUserService adminUserService;
-
-    @Autowired
-    EmailService emailService;
-
-    @Autowired
-    AdminBoardService adminBoardService;
+    private final AdminUserService adminUserService;
+    private final EmailService emailService;
+    private final AdminBoardService adminBoardService;
 
     //회원 role 변경
     @PutMapping("/admin/users/{id}/{role}")
