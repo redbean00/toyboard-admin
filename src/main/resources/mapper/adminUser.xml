@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fastcampus.toyboard.service.AdminUserService">
+    <select id="findById" resultType="com.fastcampus.toyboard.dto.AdminUserDto">
+        select u.created_at, u.id, u.username, u.nickname, u.email, r.role
+        from user_tb as u
+                 inner join role_tb as r
+        where u.id = {#id}
+          and u.id = r.user_id
+    </select>
+</mapper>
