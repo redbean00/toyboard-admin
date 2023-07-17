@@ -30,7 +30,7 @@ public class AdminController {
     }
 
     //email 전송
-    @PostMapping("/admin/users/id}")
+    @PostMapping("/admin/users/{id}")
     public ResponseEntity sendMail(@RequestBody EmailMessage emailMessage) {
         EmailMessage message = EmailMessage.builder()
                 .to(emailMessage.getTo())
