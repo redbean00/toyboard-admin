@@ -3,11 +3,11 @@ version: '3'
 services:
   mysql:
     container_name: toyboard_mysql
-    image: mysql/mysql-server:latest
+    image: mysql:latest
     environment:
       MYSQL_ROOT_HOST: '%'
       MYSQL_USER: "toyboard"
-      MYSQL_PASSWORD: "toyboard8!@"
+      MYSQL_PASSWORD: "toyboard8"
       MYSQL_DATABASE: "toyboard"
     ports:
       - "3388:3306"

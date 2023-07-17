@@ -9,8 +9,8 @@ spring:
   datasource:
     url: jdbc:mysql://127.0.0.1:3388/toyboard
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: toyboard
-    password: toyboard8!@
+    username: root
+    password: toyboard8
   jpa:
     show-sql: true
     hibernate:
