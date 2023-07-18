@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>관리자 페이지</h1>
+<ul>
+    <li><a href="/admin/users">회원 관리</a></li>
+    <li><a href="/admin/boards">게시글 관리</a></li>
+    <li><a href="/admin/stats">통계 관리</a></li>
+    <li><a href="/admin/report">신고 목록 및 블랙리스트 관리</a></li>
+</ul>
+<hr>
+
+<h3>회원 관리</h3>
+<div class="container">
+    <table>
+        <form th:action="@{/admin/users_update}" method="post">
+            <input type="hidden" th:name="userId" th:value="${user.id}" />
+            <button type="submit" class="timerepro-button">회원 등급 변경</button>
+        </form>
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>회원명</td>
+            <td>이메일</td>
+            <td>닉네임</td>
+            <td>가입일</td>
+            <td>등급</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${userList}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.nickname}"></td>
+            <td th:text="${user.createdAt}"></td>
+            <td th:text="${user.role}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div> <!-- /container -->
+</body>
+</html>
