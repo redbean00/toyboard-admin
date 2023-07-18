@@ -39,4 +39,10 @@ public class AdminController {
         userService.updateUserRole(userId, authority);
         return "redirect:/admin/user";
     }
+
+    //이메일 전송
+    @GetMapping("/admin/email")
+    public String email(){
+        return "/thymeleaf/email";
+    }
 }

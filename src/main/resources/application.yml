@@ -30,6 +30,19 @@ spring:
   web:
     resources:
       static-locations: file:src/main/resources/static/
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: aklmo3778
+    password: dpjdgtdkmzfaxfxm
+    properties:
+      mail:
+        debug: true
+        smtp:
+          auth: true
+          timeout: 5000
+          starttls:
+            enable: true
 
 mybatis:
   mapper-locations:
@@ -42,15 +55,14 @@ spring:
     activate:
       on-profile: test
   datasource:
-    url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
+    url: jdbc:mysql://127.0.0.1:3388/toyboard
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: toyboard
+    password: toyboard8!@
   jpa:
-    database: h2
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true
