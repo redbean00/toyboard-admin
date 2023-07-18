@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface UserRepository {
-    List<UserRoleDto> findAll();
+public interface UserRoleRepository {
+    List<UserRoleDto> findAllWithAuthority();
     int updateById(UserRoleDto userRoleDto);
 }

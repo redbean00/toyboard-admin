@@ -3,20 +3,20 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.fastcampus.toyboard.repository.UserRepository">
-    <select id="findAll" resultType="com.fastcampus.toyboard.dto.UserRoleDto">
-        select ut.id,
+<mapper namespace="com.fastcampus.toyboard.repository.UserRoleRepository">
+    <select id="findAllWithAuthority" resultType="com.fastcampus.toyboard.dto.UserRoleDto">
+        select ut.user_id,
                ut.username,
                ut.email,
                ut.nickname,
                ut.created_at,
-               (select role from role_tb where ut.id = role_tb.user_id) as role
-        from user_tb as ut
+               (select authority from board_authority_tb where ut.user_id = board_authority_tb.user_id) as authority
+        from board_user_tb as ut
     </select>
 
     <update id="updateById">
-        update role_tb
-        set role = {#role}
-        where user_tb.id = role_tb.user_id
+        update board_authority_tb
+        set authority = #{authority}
+        where user_id = #{userId}
     </update>
 </mapper>

@@ -8,10 +8,10 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 public class UserRoleDto {
-    private Long id;
+    private Long userId;
     private String username;
     private String email;
     private String nickname;
     private Timestamp createdAt;
-    private String role;
+    private String authority;
 }

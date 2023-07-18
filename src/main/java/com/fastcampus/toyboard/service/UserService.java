@@ -1,8 +1,7 @@
 package com.fastcampus.toyboard.service;
 
 import com.fastcampus.toyboard.dto.UserRoleDto;
-import com.fastcampus.toyboard.entity.User;
-import com.fastcampus.toyboard.repository.UserRepository;
+import com.fastcampus.toyboard.repository.UserRoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,13 +13,16 @@ import java.util.List;
 public class UserService {
 
     @Autowired
-    private final UserRepository userRepository;
+    private final UserRoleRepository userRepository;
 
-    public List<UserRoleDto> getUserList(){
-        return userRepository.findAll();
+    public List<UserRoleDto> getUserListWithAuthority(){
+        return userRepository.findAllWithAuthority();
     }
 
-    public void updateUserRole(UserRoleDto userRoleDto){
-        userRepository.updateById(userRoleDto);
+    public void updateUserRole(Long userId, String authority){
+        UserRoleDto user = new UserRoleDto();
+        user.setUserId(userId);
+        user.setAuthority(authority);
+        userRepository.updateById(user);
     }
 }
