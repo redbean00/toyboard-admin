@@ -31,8 +31,8 @@
     </thead>
     <tbody>
     <tr th:each="board : ${boardList}">
-      <form th:action="@{/admin/board/{id}(id=${board.id})}" method="post">
-        <td th:text="${board.id}"></td>
+      <form th:action="@{/admin/board/{boardId}(boardId=${board.boardId})}" method="post">
+        <td th:text="${board.boardId}"></td>
         <td th:text="${board.username}"></td>
         <td th:text="${board.title}"></td>
         <td th:text="${board.hide}"></td>

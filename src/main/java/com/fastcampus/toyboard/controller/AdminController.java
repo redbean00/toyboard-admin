@@ -73,9 +73,9 @@ public class AdminController {
     }
 
     //게시글 숨기기/보이기
-    @PostMapping("/admin/board/{id}")
-    public String managementHide(@PathVariable Long id, BoardUserDto boardUserDto){
-        boardService.updateHide(id, boardUserDto);
+    @PostMapping("/admin/board/{boardId}")
+    public String managementHide(@PathVariable Long boardId, BoardUserDto boardUserDto){
+        boardService.updateHide(boardId, boardUserDto);
         return "redirect:/admin/board";
     }
 }

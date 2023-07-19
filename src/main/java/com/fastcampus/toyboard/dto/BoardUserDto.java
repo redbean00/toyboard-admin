@@ -1,27 +1,27 @@
 package com.fastcampus.toyboard.dto;
 
-import lombok.Getter;
+import lombok.Setter;
 
-@Getter
+@Setter
 public class BoardUserDto {
-    private String id;
+    private Long boardId;
     private String username;
     private String title;
-    private Boolean hide;
+    private boolean hide;
 
-    public void setId(String id) {
-        this.id = id;
+    public Long getBoardId() {
+        return this.boardId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getUsername() {
+        return this.username;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public String getTitle() {
+        return this.title;
     }
 
-    public void setHide(Boolean hide) {
-        this.hide = hide;
+    public boolean getHide() {
+        return this.hide;
     }
 }
