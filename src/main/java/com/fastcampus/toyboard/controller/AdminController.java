@@ -1,9 +1,12 @@
 package com.fastcampus.toyboard.controller;
 
 import com.fastcampus.toyboard.dto.UserRoleDto;
+import com.fastcampus.toyboard.entity.Email;
+import com.fastcampus.toyboard.service.EmailService;
 import com.fastcampus.toyboard.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +22,9 @@ public class AdminController {
 
     @Autowired
     private final UserService userService;
+
+    @Autowired
+    private final EmailService emailService;
 
     @GetMapping("/admin")
     public String mainForm(){
@@ -40,9 +46,15 @@ public class AdminController {
         return "redirect:/admin/user";
     }
 
-    //이메일 전송
+    //이메일 전송 화면
     @GetMapping("/admin/email")
-    public String email(){
+    public String emailForm(){
         return "/thymeleaf/email";
+    }
+
+    @PostMapping("/admin/email/send")
+    public String sendEmail(Email email){
+        emailService.sendMail(email);
+        return "redirect:/admin/email";
     }
 }
