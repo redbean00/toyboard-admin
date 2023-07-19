@@ -21,13 +21,13 @@ public class AdminController {
     private final UserService userService;
 
     @GetMapping("/admin")
-    public String main(){
+    public String mainForm(){
         return "/thymeleaf/admin";
     }
 
     //회원 관리 페이지 - 전체 회원 목록 보여주고 등급을 변경할 수 있음
     @GetMapping("/admin/user")
-    public String showUserListWithAuthority(Model model){
+    public String userForm(Model model){
         List<UserRoleDto> userList = userService.getUserListWithAuthority();
         model.addAttribute("userList", userList);
         return "/thymeleaf/user";
