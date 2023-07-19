@@ -10,6 +10,8 @@ public interface BoardUserRepository {
 
     List<BoardUserDto> findAll();
 
+    BoardUserDto findById(Long boardId);
+
     int deleteById(BoardUserDto boardUserDto);
 
     int updateHideById(BoardUserDto boardUserDto);

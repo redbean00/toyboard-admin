@@ -14,6 +14,16 @@
                  bt.user_id = ut.user_id
     </select>
 
+    <select id="findById" resultType="com.fastcampus.toyboard.dto.BoardUserDto">
+        select bt.board_id, ut.username, bt.title, bt.hide
+        from board_tb as bt
+                 left outer join
+             board_user_tb as ut
+             on
+                 bt.user_id = ut.user_id
+        where bt.board_id = #{boardId}
+    </select>
+
     <update id="updateHideById">
         update board_tb
         set hide = #{hide}
