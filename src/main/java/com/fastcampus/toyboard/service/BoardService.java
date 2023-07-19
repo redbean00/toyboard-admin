@@ -19,9 +19,9 @@ public class BoardService {
         return boardUserRepository.findAll();
     }
 
-    public void updateHide(Long id, BoardUserDto boardUserDto){
+    public void updateHide(Long boardId, BoardUserDto boardUserDto){
         BoardUserDto board = new BoardUserDto();
-        board.setId(boardUserDto.getId());
+        board.setBoardId(boardId);
 
         if(boardUserDto.getHide() == false){
             board.setHide(true);

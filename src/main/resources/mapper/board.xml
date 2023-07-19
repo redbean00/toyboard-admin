@@ -6,7 +6,7 @@
 <mapper namespace="com.fastcampus.toyboard.repository.BoardUserRepository">
 
     <select id="findAll" resultType="com.fastcampus.toyboard.dto.BoardUserDto">
-        select bt.id, ut.username, bt.title, bt.hide
+        select bt.board_id, ut.username, bt.title, bt.hide
         from board_tb as bt
                  left outer join
              board_user_tb as ut
@@ -17,6 +17,6 @@
     <update id="updateHideById">
         update board_tb
         set hide = #{hide}
-        where id = #{id}
+        where board_id = #{boardId}
     </update>
 </mapper>
