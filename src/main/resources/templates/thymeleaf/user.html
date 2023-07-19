@@ -16,7 +16,7 @@
 <hr>
 <h3>회원 관리</h3>
 <div class="container">
-    <table>
+    <table border="1">
         <thead>
         <tr>
             <td>ID</td>
@@ -29,23 +29,27 @@
         </thead>
         <tbody>
         <tr th:each="user : ${userList}">
-            <td th:text="${user.userId}"></td>
-            <td th:text="${user.username}"></td>
-            <td th:text="${user.email}"></td>
-            <td th:text="${user.nickname}"></td>
-            <td th:text="${user.createdAt}"></td>
-            <td th:text="${user.authority}"></td>
-            <td th:action="@{/admin/user_update}" method="post">
-                <input type="hidden" th:name="userId" th:value="${user.userId}">
-                <select name="authority">
-                    <option value="SPROUT">새싹</option>
-                    <option value="GREAT">우수</option>
-                    <option value="BLACK">블랙</option>
-                </select>
-                <button class="timerepro-button" type="submit">
-                    변경
-                </button>
-            </td>
+            <form th:action="@{/admin/user/{userId}(userId=${user.userId})}" method="post">
+                <td th:text="${user.userId}"></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.nickname}"></td>
+                <td th:text="${user.createdAt}"></td>
+                <td th:text="${user.authority}"></td>
+                <td>
+                    <select name="authority">
+                        <option value="SPROUT">새싹</option>
+                        <option value="GREAT">우수</option>
+                        <option value="BLACK">블랙</option>
+                    </select>
+                </td>
+                <td>
+                    <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                        변경
+                    </button>
+                </td>
+                </td>
+            </form>
         </tr>
         <button th:onclick="|location.href='@{/admin/email}'|">
             이메일 전송

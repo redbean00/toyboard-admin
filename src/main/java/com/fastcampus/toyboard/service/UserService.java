@@ -19,10 +19,10 @@ public class UserService {
         return userRepository.findAllWithAuthority();
     }
 
-    public void updateUserRole(Long userId, String authority){
+    public void updateUserRole(Long userId, UserRoleDto userRoleDto){
         UserRoleDto user = new UserRoleDto();
         user.setUserId(userId);
-        user.setAuthority(authority);
+        user.setAuthority(userRoleDto.getAuthority());
         userRepository.updateById(user);
     }
 }

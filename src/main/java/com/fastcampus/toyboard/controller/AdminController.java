@@ -34,9 +34,9 @@ public class AdminController {
     }
 
     //회원 등급 변경
-    @PostMapping("/admin/user_update")
-    public String manageUserAuthority(@RequestParam("userId") Long userId, String authority){
-        userService.updateUserRole(userId, authority);
+    @PostMapping("/admin/user/{userId}")
+    public String manageUserAuthority(@PathVariable Long userId, UserRoleDto userRoleDto){
+        userService.updateUserRole(userId, userRoleDto);
         return "redirect:/admin/user";
     }
 
