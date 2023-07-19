@@ -20,15 +20,15 @@ public class BoardService {
     }
 
     public void updateHide(Long boardId, BoardUserDto boardUserDto){
-        BoardUserDto board = new BoardUserDto();
-        board.setBoardId(boardId);
+        boardUserDto = boardUserRepository.findById(boardId);
 
         if(boardUserDto.getHide() == false){
-            board.setHide(true);
-        }else{
-            board.setHide(false);
+            boardUserDto.setHide(true);
+        }
+        else if(boardUserDto.getHide() == true){
+            boardUserDto.setHide(false);
         }
 
-        boardUserRepository.updateHideById(board);
+        boardUserRepository.updateHideById(boardUserDto);
     }
 }
