@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<h1>관리자 페이지</h1>
+<ul>
+  <li><a href="/admin/user">회원 관리</a></li>
+  <li><a href="/admin/board">게시글 관리</a></li>
+  <li><a href="/admin/stat">통계 관리</a></li>
+  <li><a href="/admin/report">신고 목록 및 블랙리스트 관리</a></li>
+</ul>
+
+<hr>
+
+<h3>게시글 관리</h3>
+<div class ="container">
+  <table border="1">
+    <thead>
+    <tr>
+      <td>번호</td>
+      <td>작성자</td>
+      <td>제목</td>
+      <td>숨김여부</td>
+      <td>숨기기(1)/보이기(0)</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="board : ${boardList}">
+      <form th:action="@{/admin/board/{id}(id=${board.id})}" method="post">
+        <td th:text="${board.id}"></td>
+        <td th:text="${board.username}"></td>
+        <td th:text="${board.title}"></td>
+        <td th:text="${board.hide}"></td>
+        <td>
+          <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+            변경
+          </button>
+        </td>
+      </form>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>

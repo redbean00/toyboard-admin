@@ -1,7 +1,9 @@
 package com.fastcampus.toyboard.controller;
 
+import com.fastcampus.toyboard.dto.BoardUserDto;
 import com.fastcampus.toyboard.dto.UserRoleDto;
 import com.fastcampus.toyboard.entity.Email;
+import com.fastcampus.toyboard.service.BoardService;
 import com.fastcampus.toyboard.service.EmailService;
 import com.fastcampus.toyboard.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,9 @@ public class AdminController {
 
     @Autowired
     private final EmailService emailService;
+
+    @Autowired
+    private final BoardService boardService;
 
     @GetMapping("/admin")
     public String mainForm(){
@@ -52,9 +57,25 @@ public class AdminController {
         return "/thymeleaf/email";
     }
 
+    //이메일 전송
     @PostMapping("/admin/email/send")
     public String sendEmail(Email email){
         emailService.sendMail(email);
         return "redirect:/admin/email";
+    }
+
+    //게시글 관리 페이지
+    @GetMapping("/admin/board")
+    public String boardForm(Model model){
+        List<BoardUserDto> boardList = boardService.getBoardListWithUser();
+        model.addAttribute("boardList", boardList);
+        return "/thymeleaf/board";
+    }
+
+    //게시글 숨기기/보이기
+    @PostMapping("/admin/board/{id}")
+    public String managementHide(@PathVariable Long id, BoardUserDto boardUserDto){
+        boardService.updateHide(id, boardUserDto);
+        return "redirect:/admin/board";
     }
 }
