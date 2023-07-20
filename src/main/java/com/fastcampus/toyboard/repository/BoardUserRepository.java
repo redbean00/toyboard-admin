@@ -12,7 +12,7 @@ public interface BoardUserRepository {
 
     BoardUserDto findById(Long boardId);
 
-    int deleteById(BoardUserDto boardUserDto);
+    int deleteById(Long boardId);
 
     int updateHideById(BoardUserDto boardUserDto);
 

@@ -29,4 +29,10 @@
         set hide = #{hide}
         where board_id = #{boardId}
     </update>
+
+    <delete id="deleteById">
+        delete
+        from board_tb
+        where board_id = #{boardId}
+    </delete>
 </mapper>
