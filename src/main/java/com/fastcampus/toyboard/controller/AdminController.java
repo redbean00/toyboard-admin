@@ -9,13 +9,11 @@ import com.fastcampus.toyboard.service.EmailService;
 import com.fastcampus.toyboard.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -34,7 +32,7 @@ public class AdminController {
 
     @GetMapping("/admin")
     public String mainForm(){
-        return "/thymeleaf/admin";
+        return "/admin";
     }
 
     //회원 관리 페이지 - 전체 회원 목록 보여주고 등급을 변경할 수 있음
@@ -42,7 +40,7 @@ public class AdminController {
     public String userForm(Model model){
         List<UserRoleDto> userList = userService.getUserListWithAuthority();
         model.addAttribute("userList", userList);
-        return "/thymeleaf/user";
+        return "/user";
     }
 
     //회원 등급 변경
@@ -55,7 +53,7 @@ public class AdminController {
     //이메일 전송 화면
     @GetMapping("/admin/email")
     public String emailForm(){
-        return "/thymeleaf/email";
+        return "/email";
     }
 
     //이메일 전송
@@ -70,7 +68,7 @@ public class AdminController {
     public String boardForm(Model model){
         List<BoardUserDto> boardList = boardService.getBoardListWithUser();
         model.addAttribute("boardList", boardList);
-        return "/thymeleaf/board";
+        return "/board";
     }
 
     //게시글 숨기기/보이기
@@ -97,21 +95,23 @@ public class AdminController {
     //통계 관리 페이지
     @GetMapping("/admin/stat")
     public String statForm(){
-        return "/thymeleaf/stat";
+        return "/stat";
     }
 
+    //게시글 순으로 정렬
     @GetMapping("/admin/stat/board")
     public String statByBord(Model model){
         List<BoardUserStatDto> list = boardService.getStatListByBoard();
         model.addAttribute("list", list);
-        return "/thymeleaf/boards";
+        return "/boards";
     }
 
+    //댓글 순으로 정렬
     @GetMapping("/admin/stat/comment")
     public String statByComment(Model model){
         List<BoardUserStatDto> list = boardService.getStatListByComment();
         model.addAttribute("list", list);
-        return "/thymeleaf/comments";
+        return "/comments";
     }
 
 }
