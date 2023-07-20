@@ -1,6 +1,7 @@
 package com.fastcampus.toyboard.repository;
 
 import com.fastcampus.toyboard.dto.BoardUserDto;
+import com.fastcampus.toyboard.dto.BoardUserStatDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -17,5 +18,8 @@ public interface BoardUserRepository {
     int updateHideById(BoardUserDto boardUserDto);
 
     int updateBlackById(Long boardId);
+
+    List<BoardUserStatDto> findStatByBoard();
+    List<BoardUserStatDto> findStatByComment();
 
 }

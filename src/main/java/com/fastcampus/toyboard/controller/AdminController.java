@@ -1,6 +1,7 @@
 package com.fastcampus.toyboard.controller;
 
 import com.fastcampus.toyboard.dto.BoardUserDto;
+import com.fastcampus.toyboard.dto.BoardUserStatDto;
 import com.fastcampus.toyboard.dto.UserRoleDto;
 import com.fastcampus.toyboard.entity.Email;
 import com.fastcampus.toyboard.service.BoardService;
@@ -86,10 +87,31 @@ public class AdminController {
         return "redirect:/admin/board";
     }
 
+    //블랙리스트 등록 -> 회원 등급 'BLACK' 변경
     @GetMapping("/admin/board/black/{boardId}")
     public String blacklist(@PathVariable Long boardId){
         boardService.updateBlack(boardId);
         return "redirect:/admin/board";
+    }
+
+    //통계 관리 페이지
+    @GetMapping("/admin/stat")
+    public String statForm(){
+        return "/thymeleaf/stat";
+    }
+
+    @GetMapping("/admin/stat/board")
+    public String statByBord(Model model){
+        List<BoardUserStatDto> list = boardService.getStatListByBoard();
+        model.addAttribute("list", list);
+        return "/thymeleaf/boards";
+    }
+
+    @GetMapping("/admin/stat/comment")
+    public String statByComment(Model model){
+        List<BoardUserStatDto> list = boardService.getStatListByComment();
+        model.addAttribute("list", list);
+        return "/thymeleaf/comments";
     }
 
 }

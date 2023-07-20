@@ -1,6 +1,7 @@
 package com.fastcampus.toyboard.service;
 
 import com.fastcampus.toyboard.dto.BoardUserDto;
+import com.fastcampus.toyboard.dto.BoardUserStatDto;
 import com.fastcampus.toyboard.repository.BoardUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,13 @@ public class BoardService {
 
     public void updateBlack(Long boardId) {
         boardUserRepository.updateBlackById(boardId);
+    }
+
+    public List<BoardUserStatDto> getStatListByBoard(){
+       return boardUserRepository.findStatByBoard();
+    }
+
+    public List<BoardUserStatDto> getStatListByComment(){
+        return boardUserRepository.findStatByComment();
     }
 }
