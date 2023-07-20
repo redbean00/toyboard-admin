@@ -86,4 +86,10 @@ public class AdminController {
         return "redirect:/admin/board";
     }
 
+    @GetMapping("/admin/board/black/{boardId}")
+    public String blacklist(@PathVariable Long boardId){
+        boardService.updateBlack(boardId);
+        return "redirect:/admin/board";
+    }
+
 }

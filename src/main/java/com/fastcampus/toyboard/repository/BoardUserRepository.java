@@ -16,6 +16,6 @@ public interface BoardUserRepository {
 
     int updateHideById(BoardUserDto boardUserDto);
 
-    int updateBlackById(BoardUserDto boardUserDto);
+    int updateBlackById(Long boardId);
 
 }

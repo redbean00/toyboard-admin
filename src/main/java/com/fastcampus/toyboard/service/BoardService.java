@@ -36,4 +36,8 @@ public class BoardService {
     public void deleteBoard(Long boardId){
         boardUserRepository.deleteById(boardId);
     }
+
+    public void updateBlack(Long boardId) {
+        boardUserRepository.updateBlackById(boardId);
+    }
 }

@@ -30,6 +30,12 @@
         where board_id = #{boardId}
     </update>
 
+    <update id="updateBlackById">
+        update board_authority_tb
+        set authority = "BLACK"
+        where board_authority_tb.user_id = (select user_id from board_tb where board_id = #{boardId})
+    </update>
+
     <delete id="deleteById">
         delete
         from board_tb
