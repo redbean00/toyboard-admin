@@ -10,8 +10,11 @@
                ut.email,
                ut.nickname,
                ut.created_at,
-               (select authority from board_authority_tb where ut.user_id = board_authority_tb.user_id) as authority
+               at.authority
         from board_user_tb as ut
+                 left outer join board_authority_tb as at
+        on ut.user_id = at.user_id
+        where authority != 'ADMIN'
     </select>
 
     <update id="updateById">

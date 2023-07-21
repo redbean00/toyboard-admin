@@ -30,6 +30,7 @@
                (select count(*) from comment_tb as ct where ut.user_id = ct.user_id) +
                (select count(*) from child_comment_tb as cct where ut.user_id = cct.user_id) as comment
         from board_user_tb as ut
+        where username != 'admin'
         group by username
         order by board desc
     </select>
@@ -40,6 +41,7 @@
                (select count(*) from comment_tb as ct where ut.user_id = ct.user_id) +
                (select count(*) from child_comment_tb as cct where ut.user_id = cct.user_id) as comment
         from board_user_tb as ut
+        where username != 'admin'
         group by username
         order by comment desc
     </select>
