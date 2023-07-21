@@ -15,11 +15,11 @@ public class UserService {
     @Autowired
     private final UserRoleRepository userRepository;
 
-    public List<UserRoleDto> getUserListWithAuthority(){
+    public List<UserRoleDto> getUserListWithAuthority() {
         return userRepository.findAllWithAuthority();
     }
 
-    public void updateUserRole(Long userId, UserRoleDto userRoleDto){
+    public void updateUserRole(Long userId, UserRoleDto userRoleDto) {
         UserRoleDto user = new UserRoleDto();
         user.setUserId(userId);
         user.setAuthority(userRoleDto.getAuthority());

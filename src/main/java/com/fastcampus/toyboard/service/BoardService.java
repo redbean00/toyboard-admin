@@ -16,25 +16,24 @@ public class BoardService {
     @Autowired
     private final BoardUserRepository boardUserRepository;
 
-    public List<BoardUserDto> getBoardListWithUser(){
+    public List<BoardUserDto> getBoardListWithUser() {
         return boardUserRepository.findAll();
     }
 
-    public void updateHide(Long boardId){
+    public void updateHide(Long boardId) {
 
         BoardUserDto boardUserDto = boardUserRepository.findById(boardId);
 
-        if(boardUserDto.getHide() == false){
+        if (boardUserDto.getHide() == false) {
             boardUserDto.setHide(true);
-        }
-        else if(boardUserDto.getHide() == true){
+        } else if (boardUserDto.getHide() == true) {
             boardUserDto.setHide(false);
         }
 
         boardUserRepository.updateHideById(boardUserDto);
     }
 
-    public void deleteBoard(Long boardId){
+    public void deleteBoard(Long boardId) {
         boardUserRepository.deleteById(boardId);
     }
 
@@ -42,11 +41,11 @@ public class BoardService {
         boardUserRepository.updateBlackById(boardId);
     }
 
-    public List<BoardUserStatDto> getStatListByBoard(){
-       return boardUserRepository.findStatByBoard();
+    public List<BoardUserStatDto> getStatListByBoard() {
+        return boardUserRepository.findStatByBoard();
     }
 
-    public List<BoardUserStatDto> getStatListByComment(){
+    public List<BoardUserStatDto> getStatListByComment() {
         return boardUserRepository.findStatByComment();
     }
 }

@@ -20,6 +20,7 @@ public interface BoardUserRepository {
     int updateBlackById(Long boardId);
 
     List<BoardUserStatDto> findStatByBoard();
+
     List<BoardUserStatDto> findStatByComment();
 
 }

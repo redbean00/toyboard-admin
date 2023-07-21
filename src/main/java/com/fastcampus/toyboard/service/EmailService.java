@@ -1,6 +1,5 @@
 package com.fastcampus.toyboard.service;
 
-import com.fastcampus.toyboard.dto.UserRoleDto;
 import com.fastcampus.toyboard.entity.Email;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
@@ -13,7 +12,7 @@ public class EmailService {
 
     private final JavaMailSender javaMailSender;
 
-    public void sendMail(Email email){
+    public void sendMail(Email email) {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 
         simpleMailMessage.setTo(email.getTo());

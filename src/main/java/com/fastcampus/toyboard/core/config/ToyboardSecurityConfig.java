@@ -7,10 +7,10 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class ToyboardSecurityConfig {
-  @Bean
-  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    http.csrf().disable().formLogin().disable().authorizeRequests().antMatchers("/**").permitAll();
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.csrf().disable().formLogin().disable().authorizeRequests().antMatchers("/**").permitAll();
 
-    return http.build();
-  }
+        return http.build();
+    }
 }
