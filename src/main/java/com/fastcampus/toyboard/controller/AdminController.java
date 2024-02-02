@@ -32,13 +32,9 @@ public class AdminController {
     @Autowired
     private final BoardService boardService;
 
-    @GetMapping("")
-    public String mainForm() {
-        return "/user";
-    }
 
     //회원 관리 페이지 - 전체 회원 목록 보여주고 등급을 변경할 수 있음
-    @GetMapping("/user")
+    @GetMapping(value = {"", "/user"})
     public String userForm(Model model) {
         List<UserRoleDto> userList = userService.getUserListWithAuthority();
         model.addAttribute("userList", userList);
@@ -81,21 +77,21 @@ public class AdminController {
     }
 
     //게시글 숨기기/보이기
-    @GetMapping("/admin/board/{boardId}")
+    @GetMapping("/board/{boardId}")
     public String managementHide(@PathVariable Long boardId) {
         boardService.updateHide(boardId);
         return "redirect:/admin/board";
     }
 
     //게시글 삭제하기
-    @GetMapping("/admin/board/delete/{boardId}")
+    @GetMapping("/board/delete/{boardId}")
     public String deleteBoard(@PathVariable Long boardId) {
         boardService.deleteBoard(boardId);
         return "redirect:/admin/board";
     }
 
     //블랙리스트 등록 -> 회원 등급 'BLACK' 변경
-    @GetMapping("/admin/board/black/{boardId}")
+    @GetMapping("/board/black/{boardId}")
     public String blacklist(@PathVariable Long boardId) {
         boardService.updateBlack(boardId);
         return "redirect:/admin/board";
