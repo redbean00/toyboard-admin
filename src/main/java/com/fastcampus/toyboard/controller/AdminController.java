@@ -14,11 +14,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
 
     @Autowired
@@ -30,13 +32,13 @@ public class AdminController {
     @Autowired
     private final BoardService boardService;
 
-    @GetMapping("/admin")
+    @GetMapping("")
     public String mainForm() {
-        return "/admin";
+        return "/user";
     }
 
     //회원 관리 페이지 - 전체 회원 목록 보여주고 등급을 변경할 수 있음
-    @GetMapping("/admin/user")
+    @GetMapping("/user")
     public String userForm(Model model) {
         List<UserRoleDto> userList = userService.getUserListWithAuthority();
         model.addAttribute("userList", userList);
@@ -44,27 +46,34 @@ public class AdminController {
     }
 
     //회원 등급 변경
-    @PostMapping("/admin/user/{userId}")
+    @PostMapping("/user/{userId}")
     public String manageUserAuthority(@PathVariable Long userId, UserRoleDto userRoleDto) {
         userService.updateUserRole(userId, userRoleDto);
         return "redirect:/admin/user";
     }
 
     //이메일 전송 화면
-    @GetMapping("/admin/email")
+    @GetMapping("/email")
     public String emailForm() {
         return "/email";
     }
 
+    //전체 이메일 전송
+    @PostMapping("/email/send/all")
+    public String sendEmailAll(Email email){
+        emailService.sendMailAll(email);
+        return "redirect:/admin/user";
+    }
+
     //이메일 전송
-    @PostMapping("/admin/email/send")
+    @PostMapping("/email/send")
     public String sendEmail(Email email) {
         emailService.sendMail(email);
-        return "redirect:/admin/email";
+        return "redirect:/admin/user";
     }
 
     //게시글 관리 페이지
-    @GetMapping("/admin/board")
+    @GetMapping("/board")
     public String boardForm(Model model) {
         List<BoardUserDto> boardList = boardService.getBoardListWithUser();
         model.addAttribute("boardList", boardList);
@@ -93,7 +102,7 @@ public class AdminController {
     }
 
     //통계 관리 페이지
-    @GetMapping("/admin/stat")
+    @GetMapping("/stat")
     public String statForm() {
         return "/stat";
     }
