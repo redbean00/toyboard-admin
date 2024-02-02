@@ -33,7 +33,7 @@ public class AdminController {
     private final BoardService boardService;
 
 
-    //회원 관리 페이지 - 전체 회원 목록 보여주고 등급을 변경할 수 있음
+    //회원 관리 페이지(메인 페이지) - 전체 회원 목록 보여주고 등급을 변경할 수 있음
     @GetMapping(value = {"", "/user"})
     public String userForm(Model model) {
         List<UserRoleDto> userList = userService.getUserListWithAuthority();
@@ -97,26 +97,15 @@ public class AdminController {
         return "redirect:/admin/board";
     }
 
-    //통계 관리 페이지
+    //통계 관리 페이지 -게시글, 댓글 순으로 정렬
     @GetMapping("/stat")
-    public String statForm() {
+    public String statForm(Model model) {
+        List<BoardUserStatDto> listByBoard = boardService.getStatListByBoard();
+        model.addAttribute("listByBoard", listByBoard);
+
+        List<BoardUserStatDto> listByComment = boardService.getStatListByComment();
+        model.addAttribute("listByComment", listByComment);
         return "/stat";
-    }
-
-    //게시글 순으로 정렬
-    @GetMapping("/admin/stat/board")
-    public String statByBord(Model model) {
-        List<BoardUserStatDto> list = boardService.getStatListByBoard();
-        model.addAttribute("list", list);
-        return "/boards";
-    }
-
-    //댓글 순으로 정렬
-    @GetMapping("/admin/stat/comment")
-    public String statByComment(Model model) {
-        List<BoardUserStatDto> list = boardService.getStatListByComment();
-        model.addAttribute("list", list);
-        return "/comments";
     }
 
 }
